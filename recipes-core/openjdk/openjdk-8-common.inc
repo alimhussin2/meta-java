@@ -177,6 +177,9 @@ FLAGS_GCC6 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 FLAGS_GCC8 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 
+# WORKAROUND: ignore errors from new compilers
+CFLAGS_append = " -Wno-error=format-overflow"
+
 # flags for -native, and for bits that need a host-tool during -cross
 BUILD_CFLAGS_append = " ${@openjdk_build_helper_get_build_cflags(d)}"
 BUILD_CXXFLAGS_append = " ${@openjdk_build_helper_get_build_cflags(d)}"
