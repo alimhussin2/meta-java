@@ -81,3 +81,18 @@ class JavaTest(OERuntimeTestCase):
 
         msg = 'Incorrect mode: %s' % output
         self.assertIn(', compiled mode)', output, msg=msg)
+
+    # As OpenJDK-12 doesn't support compiled mode (JIT) for arm yet we skip this
+    # test for now.
+    @OEHasPackage(["openjre-12", "openjdk-12"])
+    @OETestDepends(['java.JavaTest.test_java_exists'])
+    @skipIfInDataVar('TUNE_FEATURES', 'armv4', 'OpenJDK 12 compiled mode not yet supported for armv4')
+    @skipIfInDataVar('TUNE_FEATURES', 'armv5', 'OpenJDK 12 compiled mode not yet supported for armv5')
+    @skipIfInDataVar('TUNE_FEATURES', 'armv6', 'OpenJDK 12 compiled mode not yet supported for armv6')
+    def test_java12_jar_comp_mode(self):
+        status, output = self.target.run('java -showversion -Xcomp -jar /tmp/test.jar')
+        msg = 'Exit status was not 0. Output: %s' % output
+        self.assertEqual(status, 0, msg=msg)
+
+        msg = 'Incorrect mode: %s' % output
+        self.assertIn(', compiled mode)', output, msg=msg)
