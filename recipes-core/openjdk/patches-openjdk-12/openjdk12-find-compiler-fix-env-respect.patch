@@ -1,0 +1,11 @@
+--- make/autoconf/toolchain.m4.orig	2019-12-09 12:02:00.527228822 +0800
++++ make/autoconf/toolchain.m4	2019-12-09 14:33:50.463265067 +0800
+@@ -506,7 +506,7 @@
+   if test "x[$]$1" != x; then
+     # User has supplied compiler name already, always let that override.
+     AC_MSG_NOTICE([Will use user supplied compiler $1=[$]$1])
+-    if test "x`basename [$]$1`" = "x[$]$1"; then
++    if test "x`basename [$]$1`" != "x[$]$1"; then
+       # A command without a complete path is provided, search $PATH.
+ 
+       AC_PATH_PROGS(POTENTIAL_$1, [$]$1)

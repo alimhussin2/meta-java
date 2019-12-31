@@ -1,0 +1,38 @@
+--- src/java.base/share/native/libjimage/imageFile.cpp.orig	2019-12-19 13:28:23.062686922 +0800
++++ src/java.base/share/native/libjimage/imageFile.cpp	2019-12-19 13:59:51.414694434 +0800
+@@ -494,7 +494,7 @@
+     // If module string is not empty string.
+     if (*module != '\0') {
+         // Get length of module name.
+-        length = strlen(module);
++        length = strlen(module) + 1;
+         // Make sure there is no buffer overflow.
+         assert(next - path + length + 2 < max && "buffer overflow");
+         // Append '/module/'.
+@@ -507,7 +507,7 @@
+     // If parent string is not empty string.
+     if (*parent != '\0') {
+         // Get length of module string.
+-        length = strlen(parent);
++        length = strlen(parent) + 1;
+         // Make sure there is no buffer overflow.
+         assert(next - path + length + 1 < max && "buffer overflow");
+         // Append 'patent/' .
+@@ -517,7 +517,7 @@
+     // Get base name string.
+     const char* base = location.get_attribute(ImageLocation::ATTRIBUTE_BASE, strings);
+     // Get length of base name.
+-    length = strlen(base);
++    length = strlen(base) + 1;
+     // Make sure there is no buffer overflow.
+     assert(next - path + length < max && "buffer overflow");
+     // Append base name.
+@@ -527,7 +527,7 @@
+     // If extension string is not empty string.
+     if (*extension != '\0') {
+         // Get length of extension string.
+-        length = strlen(extension);
++        length = strlen(extension) + 1;
+         // Make sure there is no buffer overflow.
+         assert(next - path + length + 1 < max && "buffer overflow");
+         // Append '.extension' .

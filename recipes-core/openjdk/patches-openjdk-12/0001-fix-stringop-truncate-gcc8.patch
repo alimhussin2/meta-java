@@ -1,0 +1,11 @@
+--- src/hotspot/share/runtime/arguments.cpp.orig	2019-12-19 11:31:59.082659135 +0800
++++ src/hotspot/share/runtime/arguments.cpp	2019-12-19 11:32:13.726659194 +0800
+@@ -2469,7 +2469,7 @@
+       if(tail != NULL) {
+         const char* pos = strchr(tail, '=');
+         size_t len = (pos == NULL) ? strlen(tail) : pos - tail;
+-        char* name = strncpy(NEW_C_HEAP_ARRAY(char, len + 1, mtArguments), tail, len);
++        char* name = strncpy(NEW_C_HEAP_ARRAY(char, len + 1, mtArguments), tail, len + 1);
+         name[len] = '\0';
+ 
+         char *options = NULL;

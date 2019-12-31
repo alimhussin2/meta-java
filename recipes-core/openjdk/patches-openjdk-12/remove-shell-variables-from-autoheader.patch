@@ -1,0 +1,28 @@
+--- make/autoconf/basics.m4.orig
++++ make/autoconf/basics.m4
+@@ -937,18 +937,20 @@
+   AC_SUBST(OUTPUTDIR)
+   AC_SUBST(CONFIGURESUPPORT_OUTPUTDIR)
+ 
++  # Most of the probed defines are put into config.h
++  AC_CONFIG_HEADERS([config.h:config.h.in])
+   # The spec.gmk file contains all variables for the make system.
+-  AC_CONFIG_FILES([$OUTPUTDIR/spec.gmk:$AUTOCONF_DIR/spec.gmk.in])
++  AC_CONFIG_FILES([spec.gmk:spec.gmk.in])
+   # The bootcycle-spec.gmk file contains support for boot cycle builds.
+-  AC_CONFIG_FILES([$OUTPUTDIR/bootcycle-spec.gmk:$AUTOCONF_DIR/bootcycle-spec.gmk.in])
++  AC_CONFIG_FILES([bootcycle-spec.gmk:bootcycle-spec.gmk.in])
+   # The buildjdk-spec.gmk file contains support for building a buildjdk when cross compiling.
+-  AC_CONFIG_FILES([$OUTPUTDIR/buildjdk-spec.gmk:$AUTOCONF_DIR/buildjdk-spec.gmk.in])
++  AC_CONFIG_FILES([buildjdk-spec.gmk:buildjdk-spec.gmk.in])
+   # The compare.sh is used to compare the build output to other builds.
+-  AC_CONFIG_FILES([$OUTPUTDIR/compare.sh:$AUTOCONF_DIR/compare.sh.in])
++  AC_CONFIG_FILES([compare.sh:compare.sh.in])
+   # The generated Makefile knows where the spec.gmk is and where the source is.
+   # You can run make from the OUTPUTDIR, or from the top-level Makefile
+   # which will look for generated configurations
+-  AC_CONFIG_FILES([$OUTPUTDIR/Makefile:$AUTOCONF_DIR/Makefile.in])
++  AC_CONFIG_FILES([Makefile:Makefile.in])
+ ])
+ 
+ #%%% Simple tools %%%
